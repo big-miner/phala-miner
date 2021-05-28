@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+function echo_c()
+{
+	printf "\033[0;$1m$2\033[0m\n"
+}
+
+function log_info()
+{
+	echo_c 33 "$1"
+}
+
+function log_success()
+{
+	echo_c 32 "$1"
+}
+
+function log_err()
+{
+	echo_c 35 "$1"
+}
+
+apt-get install -y jq curl
+
+ipaddr=$(echo $PHALA_NODE_WS_ENDPOINT | egrep -o '([0-9]{1,3}\.){3}[0-9]{1,3}')
+
+while true ; do
+  block_json=$(curl -sH "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "system_syncState", "params":[]}' http://$ipaddr:9933)
+  node_block=$(echo $block_json | jq -r '.result.currentBlock')
+  hightest_block=$(echo $block_json | jq -r '.result.highestBlock')
+  if [ x"$node_block" == x"$hightest_block" ] && [ x"$hightest_block" > x"10" ]; then
+    log_success "phala-node 同步完成"
+    break
+  fi
+  log_info "同步进度： 节点高度（$node_block），网络高度（$hightest_block）"
+  sleep 30
+done
+
+SLEEP_BEFORE_START=${SLEEP_BEFORE_START:-"0"}
+if [ ! "$SLEEP_BEFORE_START" == "0" ]
+then
+  echo "Sleep ${SLEEP_BEFORE_START}s"
+
+  sleep "$SLEEP_BEFORE_START"
+fi
+
+echo "Starting PHost with extra opts '${EXTRA_OPTS}'"
+
+./phost \
+  --pruntime-endpoint "$PRUNTIME_ENDPOINT" \
+  --substrate-ws-endpoint "$PHALA_NODE_WS_ENDPOINT" \
+  --mnemonic "$MNEMONIC" \
+  $EXTRA_OPTS

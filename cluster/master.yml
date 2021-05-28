@@ -1,0 +1,23 @@
+version: '3'
+
+
+services:
+  phala-master-node:
+    image: swr.cn-east-3.myhuaweicloud.com/phala/phala-poc4-node
+    container_name: phala-node
+    volumes:
+      - /opt/phala/phala-node-data:/root/data
+    #    stdin_open: true
+    restart: always
+    tty: true
+    environment:
+      - NODE_NAME='big-miner-001'
+    ports:
+      - "9933:9933"
+      - "9944:9944"
+      - "30333:30333"
+    expose:
+      # Opens port 9933，9944，30333 on the container
+      - '9933'
+      - '9944'
+      - '30333'

@@ -1,0 +1,63 @@
+version: '3'
+
+
+services:
+  phala-standalone-node:
+    image: swr.cn-east-3.myhuaweicloud.com/phala/phala-poc4-node
+    container_name: phala-node
+    volumes:
+      - /opt/phala/phala-node-data:/root/data
+#    stdin_open: true
+    restart: always
+    tty: true
+    environment:
+      - NODE_NAME='big-miner-001'
+    ports:
+      - "9933:9933"
+      - "9944:9944"
+      - "30333:30333"
+    expose:
+      # Opens port 9933，9944，30333 on the container
+      - '9933'
+      - '9944'
+      - '30333'
+
+  phala-standalone-pruntime:
+    image: swr.cn-east-3.myhuaweicloud.com/phala/phala-poc4-pruntime
+    container_name: phala-pruntime
+    volumes:
+      - /opt/phala/phala-pruntime-data:/root/data
+#    stdin_open: true
+    restart: always
+    tty: true
+    # -------------- SGX 驱动 和 DCAP 驱动 二选一，根据机器驱动进行选择注释
+    # -------------- SGX 驱动 --------------
+    devices:
+      - "/dev/isgx:/dev/isgx"
+    # -------------- DCAP 驱动 --------------
+#    devices:
+#      - "/dev/sgx/enclave:/dev/sgx/enclave"
+#      - "/dev/sgx/provision:/dev/sgx/provision"
+    ports:
+      - "8000:8000"
+    expose:
+      # Opens port 8000 on the container
+      - '8000'
+
+  phala-standalone-phost:
+    image: swr.cn-east-3.myhuaweicloud.com/phala/phala-poc4-phost
+    container_name: phala-phost
+#    stdin_open: true
+    restart: always
+    tty: true
+    volumes:
+      - "../phost_start:/phost_start"
+    depends_on:
+      - phala-standalone-node
+    environment:
+      - PRUNTIME_ENDPOINT=http://phala-pruntime:8000
+      - PHALA_NODE_WS_ENDPOINT=ws://phala-node:9944
+      - MNEMONIC=online equal xxx riot xxx you enjoy spawn noise xxx grab survey
+      - EXTRA_OPTS= -r
+      - SLEEP_BEFORE_START=0
+    command: /phost_start
