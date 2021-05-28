@@ -93,29 +93,7 @@ install_phala()
 	sudo phala install
 }
 
-set_gitconfig()
-{
-echo "
-[url \"https://github.com.cnpmjs.org/\"]
-    insteadOf = https://github.com/
 
-[http]
-	sslVerify = false
-	postBuffer = 1048576000
-[submodule]
-	recurse = true
-" > ~/.gitconfig
-}
-
-set_pip()
-{
-mkdir -p ~/.pip
-echo "
-[global]
-index-url = https://pypi.doubanio.com/simple
-trusted-host = pypi.doubanio.com
-" > ~/.pip/pip.conf
-}
 
 set_docker_config()
 {
@@ -173,7 +151,6 @@ if [ $(id -u) -ne 0 ]; then
 	exit 1
 fi
 
-set_gitconfig
 
 install_depenencies
 set_docker_config
