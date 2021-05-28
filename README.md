@@ -18,7 +18,7 @@
 
 ```shell
 git clone https://github.com/big-miner/phala-miner.git
-cd phala-miner && sudo ./install.sh
+cd phala-miner && sudo chmod -R 755 * && sudo ./install.sh
 ```
 
 ### 单机启动
