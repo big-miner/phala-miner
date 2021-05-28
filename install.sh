@@ -16,7 +16,7 @@ install_depenencies()
     fi
 
     log_info "------------Install depenencies--------------"
-    sudo apt install -y software-properties-common jq lvm2 wget openssh-server unzip kmod linux-headers-`uname -r` vim cmake pkg-config libssl-dev git build-essential clang libclang-dev curl
+    sudo apt install -y software-properties-common jq lvm2 wget unzip kmod linux-headers-`uname -r` vim cmake pkg-config git build-essential curl
     if [ $? -ne 0 ]; then
         log_err "Install libs failed"
         exit 1
