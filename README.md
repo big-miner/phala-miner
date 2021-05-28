@@ -3,8 +3,8 @@
 - [下载和安装](#-----)
 - [单机启动](#----)
 - [集群启动](#----)
-  * [方式一：master 机器只同步数据](#----master--------)
-  * [方式二： master同步节点数据还跑任务](#-----master----------)
+  * [方式一: master机器只同步数据](#-----master-------)
+  * [方式二: master机器同步节点数据还跑任务](#-----master------------)
 - [可能用到运维操作](#--------)
   * [清理 docker 容器](#---docker---)
   * [查看矿机状态](#------)
@@ -44,7 +44,7 @@ sudo docker-compose -f standalone/deploy.yml up -d
 
 ### 集群启动
 
-#### 方式一：master 机器只同步数据
+#### 方式一: master机器只同步数据
 
 <p align="center">
   <img src="docs/master1.png" width="50%" syt height="50%" />
@@ -84,7 +84,7 @@ sudo docker-compose -f cluster/worker.yml up -d
 
 
 
-#### 方式二： master同步节点数据还跑任务
+#### 方式二: master机器同步节点数据还跑任务
 
 <p align="center">
   <img src="docs/master2.png" width="50%" syt height="50%" />
