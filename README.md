@@ -1,7 +1,7 @@
 # phala 挖矿方案
 
 - [下载和安装](#-----)
-- [khala部署](./khala/README.md)
+- [khala集群方式部署](./khala/README.md)
 - [单机启动](#----)
 - [集群启动](#----)
   * [方式一: master机器只同步数据](#-----master-------)
