@@ -3,7 +3,7 @@
 ## master机器同步节点数据同时跑数据
 
 <p align="center">
-  <img src="docs/master2.png" width="50%" syt height="50%" />
+  <img src="../docs/master2.png" width="50%" syt height="50%" />
 </p>
 
 
@@ -99,8 +99,8 @@ services:
    ports:
     - "8000:8000"
    devices:
-      - /dev/sgx_enclave
-      - /dev/sgx_provision
++      - /dev/sgx_enclave
++      - /dev/sgx_provision
 +      - /dev/isgx
 
    environment:
@@ -151,3 +151,5 @@ sudo phala install isgx
 cd /opt/phala
 sudo docker-compose -f docker-compose.worker.yml up -d
 ```
+
+其他worker 节点照样
