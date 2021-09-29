@@ -58,7 +58,7 @@ install_phala()
 	if [ $? -ne 0 ]; then
 	    echo "Unzip phala scripts failed"
 	    rm $basedir/main.zip
-	    rm $basedir/solo-mining-scripts-main
+	    rm $basedir/solo-mining-scripts
 	    exit 1
 	fi
 
@@ -71,24 +71,24 @@ install_phala()
 	echo "安装新的 Phala 脚本"
 	mkdir -p $pha_installdir
 
-	cp $basedir/solo-mining-scripts-main/config.json $pha_installdir/
-	cp -r $basedir/solo-mining-scripts-main/scripts/cn $pha_installdir/scripts
+	cp $basedir/solo-mining-scripts/config.json $pha_installdir/
+	cp -r $basedir/solo-mining-scripts/scripts/cn $pha_installdir/scripts
 	chmod 777 -R $pha_installdir
 
 	echo "安装 Phala 命令行工具"
-	cp $basedir/solo-mining-scripts-main/scripts/cn/phala.sh /usr/bin/phala
+	cp $basedir/solo-mining-scripts/scripts/cn/phala.sh /usr/bin/phala
 	chmod 777 /usr/bin/phala
 
-	$basedir/solo-mining-scripts-main/install.sh --registry cn
+	$basedir/solo-mining-scripts/install.sh --registry cn
 	if [ $? -ne 0 ]; then
 	    echo "Install phala node failed"
 	    rm $basedir/main.zip
-	    rm -rf $basedir/solo-mining-scripts-main
+	    rm -rf $basedir/solo-mining-scripts
 	    exit 1
 	fi
 
 	rm $basedir/main.zip
-	rm -rf $basedir/solo-mining-scripts-main
+	rm -rf $basedir/solo-mining-scripts
 	echo "------------安装成功-------------"
 	sudo phala install
 }
