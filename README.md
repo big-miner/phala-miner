@@ -15,6 +15,14 @@
   * [批量生产账号](#------)
 - [参考](#--)
 
+如果该项目对你有用，你是否愿意打赏呢？:heart_eyes:
+
+* *BTC*: 3PWeE9gcounVUxxGjA4JrWg4EDiTmjmpNU
+* *ETH*: 0x1e42727934d14B180863346B108C612fD4a9eA99
+* *DOT*: 15Y7HvAvPyXWMxDsujMrneEXmFyqXURmBGi5BTWfcFgWAbV8
+* *KSM*: GErd9vicRMBg4ppzzgASLxoj5FiRYMituXevGupWDvKVey8
+* *NEAR*: bingryan.near
+
 ### 下载和安装
 
 ```shell
