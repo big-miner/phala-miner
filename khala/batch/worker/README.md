@@ -1,4 +1,4 @@
-# phala worker 批量部署(node 分离模式)
+# phala worker 批量部署
 
 ```
 sudo apt install python3-pip
