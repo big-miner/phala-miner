@@ -2,6 +2,7 @@
 
 - [下载和安装](#-----)
 - [khala集群方式部署](./khala/README.md)
+- [khala worker 批量部署](./khala/batch/worker/README.md)
 - [单机启动](#----)
 - [集群启动](#----)
   * [方式一: master机器只同步数据](#-----master-------)
