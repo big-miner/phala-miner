@@ -40,7 +40,7 @@ python batch_env.py
 ## step5:master批量生产env 配置文件到worker机器
 
 ```shell
-bash ansile
+bash ansile.sh
 ```
 
 
