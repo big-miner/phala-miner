@@ -1,4 +1,4 @@
-# khala worker 批量部署
+# khala worker 批量部署(node分离模式)
 
 ```
 sudo apt install python3-pip
